@@ -3,6 +3,7 @@ package com.codingdojo.starwarsgame;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.Screen;
+import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
@@ -28,8 +29,10 @@ public class GameScreen implements Screen{
 	private Texture tieImage;
 	private Texture xWing;
 	private Texture background;
-	private SpriteBatch spriteBatch;
-	private Sprite backgroundSprite;
+	private Sound backgroundMusic;
+	private long backgroundSoundId;
+
+
 
 	public GameScreen(final StarWarsGame game) {
 		this.game = game;
@@ -38,16 +41,17 @@ public class GameScreen implements Screen{
 		tieImage = new Texture(Gdx.files.internal("tie_interceptor.png"));
 		xWing = new Texture(Gdx.files.internal("x_wing.png"));
 		background = new Texture(Gdx.files.internal("star-wars-background.jpg"));
-		backgroundSprite = new Sprite(background);
+
 		//find audio for star wars theme.
-//		dropSound = Gdx.audio.newSound(Gdx.files.internal("drop.wav"));
-//		rainMusic = Gdx.audio.newMusic(Gdx.files.internal("rain.mp3"));
-//		rainMusic.setLooping(true);
+		backgroundMusic = Gdx.audio.newSound(Gdx.files.internal("sound_effects/background_music.wav"));
+		backgroundSoundId = backgroundMusic.play(0.5f);
+		backgroundMusic.setLooping(backgroundSoundId, true);
+
 		
 		camera = new OrthographicCamera();
 		camera.setToOrtho(false, 800, 480);
 		
-		//REPLACED WITH LUKE'S XWING
+		
 		xwing = new Rectangle();
 		xwing.x= 800 / 2 - 64 / 2;
 		xwing.y = 20;
@@ -66,10 +70,6 @@ public class GameScreen implements Screen{
 		tieFighter.height = 64;
 		tieFighters.add(tieFighter);
 		lastDropTime = TimeUtils.nanoTime();
-	}
-
-	public void renderBackground() {
-		backgroundSprite.draw(spriteBatch);
 	}
 
 	@Override
@@ -109,14 +109,22 @@ public class GameScreen implements Screen{
 			if(interceptor.overlaps(xwing)) {
 				// Need to replace audio.
 //				dropSound.play();
-//				Destroy Lukes xwing method needs added.
+				iter.remove();
+				xWing = new Texture(Gdx.files.internal("blown_up.png"));
 
-				iter.remove(); // this will remove the tie fighter on impact.
+
 			}
 		}
 
 	}
-	
+
+
+
+	public void stopRendering() {
+		Gdx.graphics.setContinuousRendering(false);
+		Gdx.graphics.requestRendering();
+	}
+
 	@Override
 	public void resize(int width, int height) {
 		

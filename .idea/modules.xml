@@ -5,7 +5,10 @@
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/core/core.iml" filepath="$PROJECT_DIR$/.idea/modules/core/core.iml" group="star_wars_game/core" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/desktop/desktop.iml" filepath="$PROJECT_DIR$/.idea/modules/desktop/desktop.iml" group="star_wars_game/desktop" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/html/html.iml" filepath="$PROJECT_DIR$/.idea/modules/html/html.iml" group="star_wars_game/html" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/star_wars_game.iml" filepath="$PROJECT_DIR$/.idea/modules/star_wars_game.iml" group="star_wars_game" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/star-wars-game.iml" filepath="$PROJECT_DIR$/.idea/modules/star-wars-game.iml" group="star-wars-game" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/core/star-wars-game-core.iml" filepath="$PROJECT_DIR$/.idea/modules/core/star-wars-game-core.iml" group="star-wars-game/core" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/desktop/star-wars-game-desktop.iml" filepath="$PROJECT_DIR$/.idea/modules/desktop/star-wars-game-desktop.iml" group="star-wars-game/desktop" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/html/star-wars-game-html.iml" filepath="$PROJECT_DIR$/.idea/modules/html/star-wars-game-html.iml" group="star-wars-game/html" />
     </modules>
   </component>
 </project>
