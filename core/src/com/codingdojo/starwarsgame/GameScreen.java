@@ -48,10 +48,10 @@ public class GameScreen implements Screen{
 
 		
 		//Game Textures
-		tieImage = new Texture(Gdx.files.internal("tie_interceptor.png"));
-		xWing = new Texture(Gdx.files.internal("x_wing.png"));
-		background = new Texture(Gdx.files.internal("star-wars-background.jpg"));
-		xwingBlast = new Texture(Gdx.files.internal("xwing_bullet.png"));
+		tieImage = new Texture(Gdx.files.internal("images/tie_interceptor.png"));
+		xWing = new Texture(Gdx.files.internal("images/x_wing.png"));
+		background = new Texture(Gdx.files.internal("images/star-wars-background.jpg"));
+		xwingBlast = new Texture(Gdx.files.internal("images/xwing_bullet.png"));
 		//find audio for star wars theme.
 		backgroundMusic = Gdx.audio.newSound(Gdx.files.internal("sound_effects/background_music.wav"));
 		backgroundSoundId = backgroundMusic.play(0.1f);
@@ -170,7 +170,7 @@ public class GameScreen implements Screen{
 			// Destroy lukes xwing with audio.
 			if(interceptor.overlaps(xwing)) {
 				iter.remove();
-				xWing = new Texture(Gdx.files.internal("blown_up.png"));
+				xWing = new Texture(Gdx.files.internal("images/blown_up.png"));
 				xwingExplosion.play();
 				backgroundMusic.stop();
 				stopRendering();

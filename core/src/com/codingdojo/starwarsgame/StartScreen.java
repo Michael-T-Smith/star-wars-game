@@ -30,9 +30,9 @@ public class StartScreen implements Screen{
 	public StartScreen(final StarWarsGame game) {
 		this.game = game;
 		
-		titleImage = new Texture(Gdx.files.internal("red_five_logo.png"));
-		startImage = new Texture(Gdx.files.internal("start_button.png"));
-		startImageActive = new Texture(Gdx.files.internal("start_button_red.png"));
+		titleImage = new Texture(Gdx.files.internal("images/red_five_logo.png"));
+		startImage = new Texture(Gdx.files.internal("images/start_button.png"));
+		startImageActive = new Texture(Gdx.files.internal("images/start_button_red.png"));
 		scoreFont = new BitmapFont(Gdx.files.internal("fonts/Minecraft.fnt"));
 
 		camera = new OrthographicCamera();

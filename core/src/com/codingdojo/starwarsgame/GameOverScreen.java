@@ -5,8 +5,11 @@ import com.badlogic.gdx.Preferences;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.GlyphLayout;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.utils.ScreenUtils;
 
 public class GameOverScreen implements Screen {
@@ -27,6 +30,9 @@ public class GameOverScreen implements Screen {
 	Texture tryAgainActive;
 	Texture quit;
 	Texture quitActive;
+	SpriteBatch vader;
+	Animation<TextureRegion> animation;
+	float elapsed;
 	BitmapFont scoreFont;
 	OrthographicCamera camera;
 	GlyphLayout highscoreText;
@@ -36,11 +42,11 @@ public class GameOverScreen implements Screen {
 		this.game = game;
 		this.score = score;
 		
-		gameOver = new Texture(Gdx.files.internal("game_over.png"));
-		tryAgain = new Texture(Gdx.files.internal("try_again.png"));
-		quit = new Texture(Gdx.files.internal("quit.png"));
-		tryAgainActive = new Texture(Gdx.files.internal("try_again_active.png"));
-		quitActive = new Texture(Gdx.files.internal("quit_active.png"));
+		gameOver = new Texture(Gdx.files.internal("images/game_over.png"));
+		tryAgain = new Texture(Gdx.files.internal("images/try_again.png"));
+		quit = new Texture(Gdx.files.internal("images/quit.png"));
+		tryAgainActive = new Texture(Gdx.files.internal("images/try_again_active.png"));
+		quitActive = new Texture(Gdx.files.internal("images/quit_active.png"));
 		
 		scoreFont = new BitmapFont(Gdx.files.internal("fonts/Minecraft.fnt"));
 		
@@ -51,7 +57,7 @@ public class GameOverScreen implements Screen {
 			prefs.putInteger("highscoreOne", score);
 			prefs.flush();
 		}
-		
+
 		camera = new OrthographicCamera();
 		camera.setToOrtho(false, 800, 480);
 	}
