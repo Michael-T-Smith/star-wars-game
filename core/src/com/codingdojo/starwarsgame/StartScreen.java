@@ -1,6 +1,7 @@
 package com.codingdojo.starwarsgame;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Preferences;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
@@ -22,11 +23,9 @@ public class StartScreen implements Screen{
 	BitmapFont scoreFont;
 	OrthographicCamera camera;
 	GlyphLayout highscoreOne;
-	GlyphLayout highscoreTwo;
-	GlyphLayout highscoreThree;
+	
 	int scoreOne;
-	int scoreTwo;
-	int scoreThree;
+	
 	
 	public StartScreen(final StarWarsGame game) {
 		this.game = game;
@@ -35,9 +34,12 @@ public class StartScreen implements Screen{
 		startImage = new Texture(Gdx.files.internal("start_button.png"));
 		startImageActive = new Texture(Gdx.files.internal("start_button_red.png"));
 		scoreFont = new BitmapFont(Gdx.files.internal("fonts/Minecraft.fnt"));
-		scoreFont.getData().setScale(.75f, .75f);
+
 		camera = new OrthographicCamera();
 		camera.setToOrtho(false, 800, 480);
+		
+		Preferences prefs = Gdx.app.getPreferences("starWarsGame");
+		this.scoreOne = prefs.getInteger("highscoreOne", 0);
 	}
 	
 	@Override
@@ -48,25 +50,22 @@ public class StartScreen implements Screen{
 		game.batch.setProjectionMatrix(camera.combined);
 		
 		game.batch.begin();
-		game.batch.draw(titleImage, 100, 260, TITLE_IMAGE_WIDTH, TITLE_IMAGE_HEIGHT);
+		game.batch.draw(titleImage, Gdx.graphics.getWidth() / 2 - TITLE_IMAGE_WIDTH / 2, 260, TITLE_IMAGE_WIDTH, TITLE_IMAGE_HEIGHT);
 		
-		GlyphLayout highscoreOne = new GlyphLayout(scoreFont, "Player One ___ " + scoreOne);
-		scoreFont.draw(game.batch, highscoreOne, Gdx.graphics.getWidth() / 2 - highscoreOne.width / 2, Gdx.graphics.getHeight() - highscoreOne.height - 195);
-		GlyphLayout highscoreTwo = new GlyphLayout(scoreFont, "Player Two ___ " + scoreTwo);
-		scoreFont.draw(game.batch, highscoreTwo, Gdx.graphics.getWidth() / 2 - highscoreTwo.width / 2, Gdx.graphics.getHeight() - highscoreTwo.height - 245);
-		GlyphLayout highscoreThree = new GlyphLayout(scoreFont, "Player Three ___ " + scoreThree);
-		scoreFont.draw(game.batch, highscoreThree, Gdx.graphics.getWidth() / 2 - highscoreThree.width / 2, Gdx.graphics.getHeight() - highscoreTwo.height - 295);
+		GlyphLayout highscoreOne = new GlyphLayout(scoreFont, "Highscore: " + scoreOne);
+		scoreFont.draw(game.batch, highscoreOne, Gdx.graphics.getWidth() / 2 - highscoreOne.width / 2, Gdx.graphics.getHeight() - highscoreOne.height - 225);
+
 		
 		int x = Gdx.graphics.getWidth() / 2 - START_BUTTON_WIDTH / 2;
-		int y = Gdx.graphics.getHeight() - START_BUTTON_HEIGHT - 55;
+		int y = Gdx.graphics.getHeight() - START_BUTTON_HEIGHT - 80;
 		if(Gdx.input.getX() < x + START_BUTTON_WIDTH && Gdx.input.getX() > x && Gdx.input.getY() < y + START_BUTTON_HEIGHT && Gdx.input.getY() > y) {
-			game.batch.draw(startImageActive, Gdx.graphics.getWidth() / 2 - START_BUTTON_WIDTH / 2, Gdx.graphics.getHeight() - START_BUTTON_HEIGHT - 375, START_BUTTON_WIDTH, START_BUTTON_HEIGHT);
+			game.batch.draw(startImageActive, Gdx.graphics.getWidth() / 2 - START_BUTTON_WIDTH / 2, Gdx.graphics.getHeight() - START_BUTTON_HEIGHT - 350, START_BUTTON_WIDTH, START_BUTTON_HEIGHT);
 			if(Gdx.input.isTouched()) {
 				game.setScreen(new GameScreen(game));
 				dispose();
 			}
 		} else {
-			game.batch.draw(startImage, Gdx.graphics.getWidth() / 2 - START_BUTTON_WIDTH / 2, Gdx.graphics.getHeight() - START_BUTTON_HEIGHT - 375, START_BUTTON_WIDTH, START_BUTTON_HEIGHT);
+			game.batch.draw(startImage, Gdx.graphics.getWidth() / 2 - START_BUTTON_WIDTH / 2, Gdx.graphics.getHeight() - START_BUTTON_HEIGHT - 350, START_BUTTON_WIDTH, START_BUTTON_HEIGHT);
 		}
 		game.batch.end();
 		
@@ -99,6 +98,8 @@ public class StartScreen implements Screen{
 
 	@Override
 	public void dispose() {
-		
+		titleImage.dispose();     
+		startImage.dispose(); 
+		startImageActive.dispose();
 	}
-}
+}       
