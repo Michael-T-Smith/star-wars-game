@@ -33,7 +33,7 @@ public class StartScreen implements Screen{
 		titleImage = new Texture(Gdx.files.internal("images/red_five_logo.png"));
 		startImage = new Texture(Gdx.files.internal("images/start_button.png"));
 		startImageActive = new Texture(Gdx.files.internal("images/start_button_red.png"));
-		scoreFont = new BitmapFont(Gdx.files.internal("fonts/Minecraft.fnt"));
+		scoreFont = new BitmapFont(Gdx.files.internal("fonts/minecraft.fnt"));
 
 		camera = new OrthographicCamera();
 		camera.setToOrtho(false, 800, 480);

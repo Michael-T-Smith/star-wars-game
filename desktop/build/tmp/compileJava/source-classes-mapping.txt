@@ -1,0 +1,2 @@
+com/codingdojo/starwarsgame/desktop/DesktopLauncher.java
+ com.codingdojo.starwarsgame.desktop.DesktopLauncher
